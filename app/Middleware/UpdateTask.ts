@@ -8,7 +8,7 @@ export default class UpdateTask {
     
     const taskSchema = schema.create({
       title: schema.string.optional(),
-      status: schema.enum(Object.values(taskStatus)),
+      status: schema.enum.optional(Object.values(taskStatus)),
       description: schema.string.nullable()
     })
 
