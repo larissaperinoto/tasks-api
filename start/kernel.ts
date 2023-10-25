@@ -30,6 +30,7 @@ Server.middleware.register([() => import('@ioc:Adonis/Core/BodyParser')])
 | Named middleware are defined as key-value pair. The value is the namespace
 | or middleware function and key is the alias. Later you can use these
 | alias on individual routes. For example:
+
 |
 | { auth: () => import('App/Middleware/Auth') }
 |
@@ -38,4 +39,7 @@ Server.middleware.register([() => import('@ioc:Adonis/Core/BodyParser')])
 | Route.get('dashboard', 'UserController.dashboard').middleware('auth')
 |
 */
-Server.middleware.registerNamed({})
+Server.middleware.registerNamed({
+  createTask: () => import('App/Middleware/CreateTask'),
+  updateTask: () => import('App/Middleware/UpdateTask') 
+})

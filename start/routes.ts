@@ -22,6 +22,10 @@ import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
 
-  Route.resource('/tasks', 'TasksController').apiOnly()
+  Route.resource('/tasks', 'TasksController').apiOnly().except(['update', 'store']) 
+
+  Route.post('/tasks','TasksController.store').middleware('createTask')
+
+  Route.put('/tasks/:id', 'TasksController.update').middleware('updateTask')
 
 }).prefix('/api')
