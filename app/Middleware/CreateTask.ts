@@ -1,13 +1,14 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { schema } from '@ioc:Adonis/Core/Validator'
 import { tasksSchemaMessages } from 'App/Utils/Error.messages'
+import { taskStatus } from 'App/Utils/Tasks.status'
 
 export default class CreateTask {
   public async handle({ request }: HttpContextContract, next: () => Promise<void>) {
     
     const taskSchema = schema.create({
       title: schema.string(),
-      status: schema.enum(['pending', 'done']),
+      status: schema.enum(Object.values(taskStatus)),
       description: schema.string.nullable()
     })
 
