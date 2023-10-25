@@ -54,4 +54,26 @@ export default class TasksController {
 
     }
   }
+
+  public async destroy({ params: { id }, response }: HttpContextContract) {
+    try {
+      
+      const task = await Task.findOrFail(id)
+
+      task.delete()
+
+      return {
+        message: `A task de id ${id} foi excluída.`
+      }
+
+    } catch(e) {
+
+      response.status(400)
+
+      return {
+        message: `Não foi possível deletar a task de id ${id}.`
+      }
+
+    }
+  }
 }
