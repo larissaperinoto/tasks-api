@@ -1,6 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Task from 'App/Models/Task'
-
 export default class TasksController {
 
   public async store({ request, response }: HttpContextContract) {
@@ -40,15 +39,23 @@ export default class TasksController {
 
   public async update({ params: { id }, request, response }: HttpContextContract) {
 
-    const body = request.body()
+    const { title, description, status } = request.body()
 
     try {
       
       const task = await Task.findOrFail(id)
 
-      task.title = body.title
-      task.description = body.description
-      task.status = body.status
+      if (title) {
+        task.title = title
+      }
+
+      if (description) {
+        task.description = description
+      }
+
+      if (status) {
+        task.status = status
+      }
 
       task.save()
 
