@@ -7,11 +7,21 @@ export default class TasksController {
 
     const body = request.body()
 
-    response.status(201)
+    try {
+      const res = await Task.create(body)
+      
+      response.status(201)
+      
+      return res
 
-    const res = await Task.create(body)
+    } catch(e) {
 
-    return res
+      response.status(400)
+
+      return {
+        message: `Não foi possível criar a task.`
+      }
+    }
   }
 
   public async index() {
