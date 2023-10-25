@@ -1,0 +1,161 @@
+info:
+  title: API de Tarefas
+  description: Permite criar, listar, atualizar e deletar tarelas de um alista de tarefas.
+  version: 0.0.1
+
+paths:
+  /api/tasks:
+    post:
+      summary: Cria uma nova tarefa
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: 'Passear com o cachorro'
+                  required: true
+                status:
+                  type: string
+                  example: 'pending'
+                  required: true
+                description:
+                  type: string
+                  example: 'Não esquecer a guia.'
+                  required: false
+      responses:
+        201:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    example: 50
+                  title:
+                    type: string
+                    example: 'Passear com o cachorro'
+                  status:
+                    type: string
+                    example: 'pending'
+                  description:
+                    type: string
+                    example: 'Não esquecer a guia.'
+                  created_at:
+                    type: string
+                    format: date
+                    exemple: '2023-10-25 19:58'
+                  updated_at:
+                    type: string
+                    format: date
+                    exemple: '2023-10-25 19:58'
+        400:
+          description: 'Não foi possível criar a task.'
+        422:
+          description: Um campo obrigatório está faltando ou não tem o formato esperado.
+    get:
+      summary: Lista todas as tarefas
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                      example: 50
+                    title:
+                      type: string
+                      example: 'Passear com o cachorro'
+                    status:
+                      type: string
+                      example: 'pending'
+                    description:
+                      type: string
+                      example: 'Não esquecer a guia.'
+                    created_at:
+                      type: string
+                      format: date
+                      exemple: '2023-10-25 19:58'
+                    updated_at:
+                      type: string
+                      format: date
+                      exemple: '2023-10-25 19:58'
+  /api/tasks/:id:
+    put:
+      summary: Atualiza uma tarefa
+      parameters:
+        taskId: id
+        in: path
+        required: true
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: 'Passear com o cachorro'
+                  required: false
+                status:
+                  type: string
+                  example: 'done'
+                  required: false
+                description:
+                  type: string
+                  example: 'Não esquecer a guia.'
+                  required: false
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    example: 50
+                  title:
+                    type: string
+                    example: 'Passear com o cachorro'
+                  status:
+                    type: string
+                    example: 'done'
+                  description:
+                    type: string
+                    example: 'Não esquecer a guia.'
+                  created_at:
+                    type: string
+                    format: date
+                    exemple: '2023-10-25 19:58'
+                  updated_at:
+                    type: string
+                    format: date
+                    exemple: '2023-10-25 19:58'
+        400:
+          description: 'Não foi possível atualizar a task de {id}.'
+        422:
+          description: Um campo enviado não tem o formato esperado.
+    delete:
+      summary: Atualiza uma tarefa
+      parameters:
+        - taskId: id
+          in: path
+          required: true
+      responses:
+        200:
+          description: A task de id ${id} foi excluída
+        400:
+          description: Não foi possível deletar a task de id ${id}.
