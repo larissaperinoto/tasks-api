@@ -39,7 +39,7 @@ Caso possua o Postgres instalado em sua máquina, faça a substituíção das pr
 
 Suba um container com o Postgres utilizando o comando abaixo.
 
-    docker run -it --name postgresss -e POSTGRESS_PASSWORD=postgres -p 5432:5432  postgres
+    docker run -it --name postgresss -e POSTGRES_PASSWORD=postgres -p 5432:5432  postgres
 
 Caso queira usar um password diferente é necessário inserir a alteração no arquivo .env na propriedade **PG_PASSWORD**.
 
