@@ -159,3 +159,39 @@ paths:
           description: A task de id ${id} foi excluída
         400:
           description: Não foi possível deletar a task de id ${id}.
+    get:
+      summary: Busca uma tarefa por ID
+      parameters:
+        taskId: id
+        in: path
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    example: 50
+                  title:
+                    type: string
+                    example: 'Passear com o cachorro'
+                  status:
+                    type: string
+                    example: 'done'
+                  description:
+                    type: string
+                    example: 'Não esquecer a guia.'
+                  created_at:
+                    type: string
+                    format: date
+                    exemple: '2023-10-25 19:58'
+                  updated_at:
+                    type: string
+                    format: date
+                    exemple: '2023-10-25 19:58'
+        400:
+          description: Não foi possível encontrar a tarefa {ID}
