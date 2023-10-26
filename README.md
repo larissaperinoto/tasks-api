@@ -43,9 +43,15 @@ Suba um container com o Postgres utilizando o comando abaixo.
 
 Caso queira usar um password diferente é necessário inserir a alteração no arquivo .env na propriedade **PG_PASSWORD**.
 
-Inicie a aplicação com o comando abaixo.
+Escolha um cliente SQL de sua preferencia (DBeaver, Database Client, outros), faça login utilizando as credenciais e porta do banco e rode a query SQL presente no arquivo **script.sql**.
 
-    node ace serve --watch
+Após criar o banco, rode as migrations e seeders com o comando abaixo.
+
+    npm run start:db
+
+Inicie a aplicaçao com o seguinte comando.
+
+    npm run dev
 
 ### Documentação
 
@@ -53,4 +59,4 @@ Acesse a documentação das rotas disponíveis na API através da rota /docs.
 
 ---
 
-Developed by [Larissa Perinoto](https://larissaperinoto.com.br/), © 2023.
+Desenvolvido por [Larissa Perinoto](https://larissaperinoto.com.br/), © 2023.
